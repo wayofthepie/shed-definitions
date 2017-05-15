@@ -2,7 +2,7 @@
 ---
 with:
   - build as b
-  - ""
+  - notify as n
 compose:
   - stage: build and test
     steps:
@@ -12,10 +12,13 @@ compose:
       emit:
         - ${this.run}.success
     on_failure:
+      continue: true
       emit:
         - ${this.run}.failure
+      steps:
+        - n.notify_slack "Failed!"
   launch:
-    when: titan.develop.merge
+    when: reponame.develop.merge
     expect:
       - repoName
       - projectName
