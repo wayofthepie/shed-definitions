@@ -1,0 +1,13 @@
+---
+namespace: build
+steps:
+  - name: gradle_build
+    executables:
+      - cmd: ./gradlew
+        args: clean build
+  - name: gradle unit and integ test
+    executables:
+      - cmd: ./gradlew
+        args: clean test
+      - cmd: ./gradlew
+        args: clean integtest
