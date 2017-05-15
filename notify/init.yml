@@ -1,0 +1,10 @@
+---
+namespace: notify
+steps:
+  - name: notify_slack
+    args:
+      - msg
+    executables:
+      - cmd: curl
+        args: -XPOST ${msg} ... slack.com
+  
